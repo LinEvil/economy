@@ -2,10 +2,12 @@ name: Economy
 main: com.mengcraft.economy.Main
 version: ${project.version}
 author: caoli5288
+load: STARTUP
 
 commands:
   economy:
     aliases: [eco, bal, balance, money]
     description: None.
 
+depend: [SimpleORM]
 softdepend: [Vault]
