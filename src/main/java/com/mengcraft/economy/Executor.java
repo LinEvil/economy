@@ -28,7 +28,7 @@ public class Executor implements CommandExecutor {
         this.main = main;
         this.manager = manager;
         top = new Cache<>(() -> main.getDatabase().find(User.class)
-                .orderBy("value desc")
+                .orderBy("balance desc")
                 .setMaxRows(20)
                 .findList());
         top.setExpire(3000000);
@@ -59,7 +59,7 @@ public class Executor implements CommandExecutor {
         } else if (p instanceof Player) {
             main.exec(() -> {
                 double i = manager.get(((Player) p));
-                p.sendMessage(ChatColor.GOLD + "【羽岚经济系统】" + ChatColor.GREEN + "你拥有" + i + main.getPlural());
+                p.sendMessage(ChatColor.GOLD + "【羽岚淫行】" + ChatColor.GREEN + "你拥有" + i + " " + main.getPlural() + "，赞助服务器可以获得更多羽岚币");
             });
             return true;
         } else {
@@ -75,7 +75,7 @@ public class Executor implements CommandExecutor {
                 int i = 1;
                 p.sendMessage(ChatColor.GOLD + ">>> 羽岚庄园富豪排行榜（" + main.getPlural() + "）");
                 for (User user : list) {
-                    p.sendMessage("§6 " + i++ + "> " + user.getName() + " - " + user.getValue() + main.getPlural());
+                    p.sendMessage("§6 " + i++ + "> " + user.getUsername() + " - " + user.getBalance() + main.getPlural());
                 }
                 p.sendMessage(ChatColor.GOLD + "<<<");
             });
@@ -92,7 +92,7 @@ public class Executor implements CommandExecutor {
                 if (i > 0) {
                     set(p, main.getServer().getOfflinePlayer(next), i);
                 } else {
-                    p.sendMessage(ChatColor.RED + "【羽岚经济系统】请不要使用负数");
+                    p.sendMessage(ChatColor.GOLD + "【羽岚淫行】"  + ChatColor.RED + "请不要使用负数");
                 }
                 return true;
             }
@@ -104,7 +104,7 @@ public class Executor implements CommandExecutor {
         main.exec(() -> {
             manager.set(j, i);
         });
-        p.sendMessage(ChatColor.GREEN + "【羽岚经济系统】操作成功");
+        p.sendMessage(ChatColor.GOLD + "【羽岚淫行】"  + ChatColor.GREEN + "操作成功");
     }
 
     private boolean take(CommandSender p, Iterator<String> it) {
@@ -115,7 +115,7 @@ public class Executor implements CommandExecutor {
                 if (i > 0) {
                     take(p, main.getServer().getOfflinePlayer(next), i);
                 } else {
-                    p.sendMessage(ChatColor.RED + "【羽岚经济系统】请不要使用负数");
+                    p.sendMessage(ChatColor.GOLD + "【羽岚淫行】"  + ChatColor.RED + "请不要使用负数");
                 }
                 return true;
             }
@@ -126,9 +126,9 @@ public class Executor implements CommandExecutor {
     private void take(CommandSender p, OfflinePlayer j, double i) {
         main.exec(() -> {
             if (manager.take(j, i)) {
-                p.sendMessage(ChatColor.GREEN + "【羽岚经济系统】操作成功");
+                p.sendMessage(ChatColor.GOLD + "【羽岚淫行】"  + ChatColor.GREEN + "操作成功");
             } else {
-                p.sendMessage(ChatColor.RED + "【羽岚经济系统】操作失败");
+                p.sendMessage(ChatColor.GOLD + "【羽岚淫行】"  + ChatColor.RED + "操作失败");
             }
         });
     }
@@ -141,7 +141,7 @@ public class Executor implements CommandExecutor {
                 if (i > 0) {
                     give(p, main.getServer().getOfflinePlayer(next), i);
                 } else {
-                    p.sendMessage(ChatColor.RED + "【羽岚经济系统】请不要使用负数");
+                    p.sendMessage(ChatColor.GOLD + "【羽岚淫行】"  + ChatColor.RED + "请不要使用负数");
                 }
                 return true;
             }
@@ -159,10 +159,10 @@ public class Executor implements CommandExecutor {
                 } else {
                     manager.take(Player.class.cast(p), j, i);
                 }
-                p.sendMessage(ChatColor.GREEN + "【羽岚经济系统】操作成功");
+                p.sendMessage(ChatColor.GOLD + "【羽岚淫行】"  + ChatColor.GREEN + "操作成功");
             } catch (Exception e) {
                 main.log(e);
-                p.sendMessage(ChatColor.RED + "【羽岚经济系统】操作失败");
+                p.sendMessage(ChatColor.GOLD + "【羽岚淫行】"  + ChatColor.RED + "操作失败");
             }
         });
     }
@@ -172,7 +172,7 @@ public class Executor implements CommandExecutor {
             main.exec(() -> {
                 OfflinePlayer j = main.getServer().getOfflinePlayer(it.next());// sync blocking method
                 double i = manager.get(j);
-                p.sendMessage(ChatColor.GOLD + "【羽岚经济系统】" + ChatColor.GREEN + "玩家" + j.getName() + "拥有" + i + main.getPlural());
+                p.sendMessage(ChatColor.GOLD + "【羽岚淫行】" + ChatColor.GREEN + "玩家" + j.getName() + "拥有" + i + main.getPlural());
             });
             return true;
         } else {

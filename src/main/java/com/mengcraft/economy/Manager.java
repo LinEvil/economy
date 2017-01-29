@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
+
 /**
  * Created on 16-3-21.
  */
@@ -34,22 +35,19 @@ public class Manager implements MyEconomy, Listener {
         if ($.nil(cached)) {
             EbeanServer db = main.getDatabase();
             cached = new Cache<>(() -> {
-                User out = db.find(User.class, p.getUniqueId());
-                if ($.nil(out)) {
 //对无ID玩家填补ID 2017年1月29日
-                    User noid = db.find(User.class).where().eq("name", p.getName()).findUnique();
-                    if ($.nil(noid)) {
+                    User out = db.find(User.class, p.getName());
+                    if ($.eq(out, null)) {
                         //!
                         out = db.createEntityBean(User.class);
-                        out.setId(p.getUniqueId());
-                        out.setName(p.getName());
+                        out.setUuid(p.getUniqueId());
+                        out.setUsername(p.getName());
                         //!
                     }else{
-                        out = noid;
-                        out.setId(p.getUniqueId());
+                        out.setUuid(p.getUniqueId());
                     }
 
-                }
+
                 
                 return out;
             });
@@ -61,14 +59,14 @@ public class Manager implements MyEconomy, Listener {
 
     @Override
     public double get(OfflinePlayer p) {
-        return fetch(p).get().getValue();
+        return fetch(p).get().getBalance();
     }
 
     @Override
     public void set(OfflinePlayer p, double v) {
         Cache<User> cache = fetch(p);
         User user = cache.get(true);
-        user.setValue(round(v));
+        user.setBalance(round(v));
         main.getDatabase().save(user);
     }
 
@@ -76,7 +74,7 @@ public class Manager implements MyEconomy, Listener {
     public boolean has(OfflinePlayer p, double value) {
         Cache<User> cached = fetch(p);
         User user = cached.get(true);
-        return !(value - user.getValue() > 0);
+        return !(value - user.getBalance() > 0);
     }
 
     @Override
@@ -85,7 +83,7 @@ public class Manager implements MyEconomy, Listener {
             throw new IllegalArgumentException(String.valueOf(value));
         }
         User user = fetch(p).get(true);
-        user.setValue(round(user.getValue() + value));
+        user.setBalance(round(user.getBalance() + value));
         main.getDatabase().save(user);
     }
 
@@ -95,10 +93,10 @@ public class Manager implements MyEconomy, Listener {
             throw new IllegalArgumentException(String.valueOf(value));
         }
         User user = fetch(p).get(true);
-        double newValue = round(user.getValue() - value);
+        double newValue = round(user.getBalance() - value);
         boolean result = !(newValue < 0);
         if (result) {
-            user.setValue(newValue);
+            user.setBalance(newValue);
             main.getDatabase().save(user);
         }
         return result;
