@@ -49,7 +49,7 @@ public class Main extends JavaPlugin {
                     this,
                     ServicePriority.Highest
             );
-            getLogger().info("Hook to vault!!!");
+            getLogger().info("【羽岚经济系统】Hook to vault!!!");
         }
     }
 
@@ -74,10 +74,10 @@ public class Main extends JavaPlugin {
 
         getCommand("money").setExecutor(new Executor(this, manager));
 
-        getServer().getConsoleSender().sendMessage(new String[]{
-                ChatColor.GREEN + "姊︽ⅵ瀹堕珮鎬ц兘鏈嶅姟鍣ㄥ嚭绉熷簵",
-                ChatColor.GREEN + "shop105595113.taobao.com"
-        });
+        //getServer().getConsoleSender().sendMessage(new String[]{
+          //      ChatColor.GREEN + "梦梦家高性能服务器出租店",
+          //      ChatColor.GREEN + "shop105595113.taobao.com"
+        //});
 
         manager.hookQuit();
     }

@@ -36,10 +36,21 @@ public class Manager implements MyEconomy, Listener {
             cached = new Cache<>(() -> {
                 User out = db.find(User.class, p.getUniqueId());
                 if ($.nil(out)) {
-                    out = db.createEntityBean(User.class);
-                    out.setId(p.getUniqueId());
-                    out.setName(p.getName());
+//对无ID玩家填补ID 2017年1月29日
+                    User noid = db.find(User.class).where().eq("name", p.getName()).findUnique();
+                    if ($.nil(noid)) {
+                        //!
+                        out = db.createEntityBean(User.class);
+                        out.setId(p.getUniqueId());
+                        out.setName(p.getName());
+                        //!
+                    }else{
+                        out = noid;
+                        out.setId(p.getUniqueId());
+                    }
+
                 }
+                
                 return out;
             });
             cached.setExpire(300_000);

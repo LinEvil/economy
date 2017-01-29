@@ -59,7 +59,7 @@ public class Executor implements CommandExecutor {
         } else if (p instanceof Player) {
             main.exec(() -> {
                 double i = manager.get(((Player) p));
-                p.sendMessage(ChatColor.BLUE + "ä½ æ‹¥æœ‰" + i + main.getPlural());
+                p.sendMessage(ChatColor.GOLD + "¡¾Óğá°¾­¼ÃÏµÍ³¡¿" + ChatColor.GREEN + "ÄãÓµÓĞ" + i + main.getPlural());
             });
             return true;
         } else {
@@ -73,9 +73,9 @@ public class Executor implements CommandExecutor {
             main.exec(() -> {
                 List<User> list = top.get();
                 int i = 1;
-                p.sendMessage(ChatColor.GOLD + ">>> å¯Œè±ªæ’è¡Œæ¦œ");
+                p.sendMessage(ChatColor.GOLD + ">>> Óğá°×¯Ô°¸»ºÀÅÅĞĞ°ñ£¨" + main.getPlural() + "£©");
                 for (User user : list) {
-                    p.sendMessage("Â§6 " + i++ + "> " + user.getName() + " - " + user.getValue() + main.getPlural());
+                    p.sendMessage("¡ì6 " + i++ + "> " + user.getName() + " - " + user.getValue() + main.getPlural());
                 }
                 p.sendMessage(ChatColor.GOLD + "<<<");
             });
@@ -92,7 +92,7 @@ public class Executor implements CommandExecutor {
                 if (i > 0) {
                     set(p, main.getServer().getOfflinePlayer(next), i);
                 } else {
-                    p.sendMessage(ChatColor.RED + "è¯·ä¸è¦ä½¿ç”¨è´Ÿæ•°");
+                    p.sendMessage(ChatColor.RED + "¡¾Óğá°¾­¼ÃÏµÍ³¡¿Çë²»ÒªÊ¹ÓÃ¸ºÊı");
                 }
                 return true;
             }
@@ -104,7 +104,7 @@ public class Executor implements CommandExecutor {
         main.exec(() -> {
             manager.set(j, i);
         });
-        p.sendMessage(ChatColor.GREEN + "æ“ä½œæˆåŠŸ");
+        p.sendMessage(ChatColor.GREEN + "¡¾Óğá°¾­¼ÃÏµÍ³¡¿²Ù×÷³É¹¦");
     }
 
     private boolean take(CommandSender p, Iterator<String> it) {
@@ -115,7 +115,7 @@ public class Executor implements CommandExecutor {
                 if (i > 0) {
                     take(p, main.getServer().getOfflinePlayer(next), i);
                 } else {
-                    p.sendMessage(ChatColor.RED + "è¯·ä¸è¦ä½¿ç”¨è´Ÿæ•°");
+                    p.sendMessage(ChatColor.RED + "¡¾Óğá°¾­¼ÃÏµÍ³¡¿Çë²»ÒªÊ¹ÓÃ¸ºÊı");
                 }
                 return true;
             }
@@ -126,9 +126,9 @@ public class Executor implements CommandExecutor {
     private void take(CommandSender p, OfflinePlayer j, double i) {
         main.exec(() -> {
             if (manager.take(j, i)) {
-                p.sendMessage(ChatColor.GREEN + "æ“ä½œæˆåŠŸ");
+                p.sendMessage(ChatColor.GREEN + "¡¾Óğá°¾­¼ÃÏµÍ³¡¿²Ù×÷³É¹¦");
             } else {
-                p.sendMessage(ChatColor.RED + "æ“ä½œå¤±è´¥");
+                p.sendMessage(ChatColor.RED + "¡¾Óğá°¾­¼ÃÏµÍ³¡¿²Ù×÷Ê§°Ü");
             }
         });
     }
@@ -141,7 +141,7 @@ public class Executor implements CommandExecutor {
                 if (i > 0) {
                     give(p, main.getServer().getOfflinePlayer(next), i);
                 } else {
-                    p.sendMessage(ChatColor.RED + "è¯·ä¸è¦ä½¿ç”¨è´Ÿæ•°");
+                    p.sendMessage(ChatColor.RED + "¡¾Óğá°¾­¼ÃÏµÍ³¡¿Çë²»ÒªÊ¹ÓÃ¸ºÊı");
                 }
                 return true;
             }
@@ -159,10 +159,10 @@ public class Executor implements CommandExecutor {
                 } else {
                     manager.take(Player.class.cast(p), j, i);
                 }
-                p.sendMessage(ChatColor.GREEN + "æ“ä½œæˆåŠŸ");
+                p.sendMessage(ChatColor.GREEN + "¡¾Óğá°¾­¼ÃÏµÍ³¡¿²Ù×÷³É¹¦");
             } catch (Exception e) {
                 main.log(e);
-                p.sendMessage(ChatColor.RED + "æ“ä½œå¤±è´¥");
+                p.sendMessage(ChatColor.RED + "¡¾Óğá°¾­¼ÃÏµÍ³¡¿²Ù×÷Ê§°Ü");
             }
         });
     }
@@ -172,7 +172,7 @@ public class Executor implements CommandExecutor {
             main.exec(() -> {
                 OfflinePlayer j = main.getServer().getOfflinePlayer(it.next());// sync blocking method
                 double i = manager.get(j);
-                p.sendMessage(ChatColor.BLUE + "ç©å®¶" + j.getName() + "æ‹¥æœ‰" + i + main.getPlural());
+                p.sendMessage(ChatColor.GOLD + "¡¾Óğá°¾­¼ÃÏµÍ³¡¿" + ChatColor.GREEN + "Íæ¼Ò" + j.getName() + "ÓµÓĞ" + i + main.getPlural());
             });
             return true;
         } else {
