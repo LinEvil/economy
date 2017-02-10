@@ -59,7 +59,7 @@ public class Executor implements CommandExecutor {
         } else if (p instanceof Player) {
             main.exec(() -> {
                 double i = manager.get(((Player) p));
-                p.sendMessage(ChatColor.GOLD + "【羽岚淫行】" + ChatColor.GREEN + "你拥有" + i + " " + main.getPlural() + "，赞助服务器可以获得更多羽岚币");
+                p.sendMessage(ChatColor.GOLD + "【羽岚淫行】" + ChatColor.GREEN + " 你拥有" + i + " " + main.getPlural() + "，赞助服务器可以获得更多羽岚币");
             });
             return true;
         } else {
