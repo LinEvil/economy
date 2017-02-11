@@ -44,7 +44,9 @@ public class Manager implements MyEconomy, Listener {
                         out.setUsername(p.getName());
                         //!
                     }else{
-                        out.setUuid(p.getUniqueId());
+                        if(out.getUuid() == null){
+                            out.setUuid(p.getUniqueId());
+                        }
                     }
 
 
