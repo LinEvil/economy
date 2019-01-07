@@ -1,4 +1,9 @@
+# Warning
+
+iConomy数据库转换用，常规环境请不要使用。
+
 # Economy
+
 简单的MC服务器经济插件。
 
 ## Feature
